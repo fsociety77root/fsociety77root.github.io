@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web adapter | Создатель Цифрового общества</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --primary: #ff6b35;
+            --primary-glow: rgba(255, 107, 53, 0.4);
+            --secondary: #ff8e53;
+            --accent: #ffa726;
+            --text: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --border: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --gradient: linear-gradient(135deg, #ff6b35, #ff8e53);
+            --glow: 0 0 15px var(--primary-glow);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Анимированный фон */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            animation: pulse 20s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.05; }
+            100% { opacity: 0.15; }
+        }
+
+        /* Шапка с языковым переключателем */
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--glow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            margin-right: 10px;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .logo-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lang-switcher {
+            display: flex;
+            background-color: var(--bg-card);
+            border-radius: 50px;
+            padding: 5px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+            box-shadow: var(--glow);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Главная секция */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .key-visual {
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
+            transition: all 0.5s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-visual:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .main-title {
+            font-size: 52px;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--primary);
+            padding: 15px 25px;
+            margin: 15px 0;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .creator-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-weight: 600;
+            box-shadow: var(--glow);
+        }
+
+        .creator-badge i {
+            margin-right: 10px;
+        }
+
+        /* Секция контактов */
+        .contact-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .telegram-connect {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
+            transition: all 0.3s;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .telegram-connect:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .telegram-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .telegram-username {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .telegram-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: var(--glow);
+        }
+
+        .telegram-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px var(--primary-glow);
+        }
+
+        /* Секция с ценами */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            box-shadow: var(--glow);
+        }
+
+        .price-section {
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 50px 0;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .price-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .price-card {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+            border-color: var(--primary);
+        }
+
+        .price-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary);
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price-header h3 {
+            font-size: 24px;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .stars i {
+            margin: 0 2px;
+            text-shadow: 0 0 8px rgba(255, 167, 38, 0.7);
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .price span {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .price-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Футер */
+        footer {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .creator-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .creator-badge-footer {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .header-content {
+                padding: 0 20px;
+            }
+
+            .main-title {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(26, 26, 26, 0.95);
+                padding: 20px;
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(10px);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .price-card.featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .price-section {
+                padding: 30px 20px;
+            }
+
+            .key-visual {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .header-right {
+                gap: 10px;
+            }
+
+            .lang-switcher {
+                padding: 3px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-title {
+                font-size: 32px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .telegram-connect {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированный фон -->
+    <div class="bg-animation"></div>
+
+    <!-- Шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">&#60;/&#62;</div>
+                <div class="logo-text">web adapter</div>
+            </div>
+            
+            <div class="header-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav id="navMenu">
+                    <ul>
+                        <li><a href="#home" data-lang-ru="Главная" data-lang-en="Home">Главная</a></li>
+                        <li><a href="#prices" data-lang-ru="Прайс" data-lang-en="Prices">Прайс</a></li>
+                        <li><a href="#contact" data-lang-ru="Telegram" data-lang-en="Telegram">Telegram</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главная секция -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="key-visual">
+                <h1 class="main-title">web adapter</h1>
+                <p class="tagline" data-lang-ru="Создатель Цифрового общества" data-lang-en="Creator of Digital Society">Создатель Цифрового общества</p>
+                
+                <div class="highlight-box">
+                    <p data-lang-ru="<span class='highlight'>2 года</span> в программировании. Создаю <span class='highlight'>Telegram-ботов</span> и веб-приложения на <span class='highlight'>HTML, Python, JavaScript</span>." 
+                       data-lang-en="<span class='highlight'>2 years</span> in programming. Creating <span class='highlight'>Telegram bots</span> and web applications with <span class='highlight'>HTML, Python, JavaScript</span>.">
+                        <span class="highlight">2 года</span> в программировании. Создаю <span class="highlight">Telegram-ботов</span> и веб-приложения на <span class="highlight">HTML, Python, JavaScript</span>.
+                    </p>
+                </div>
+                
+                <div class="creator-badge">
+                    <i class="fas fa-crown"></i>
+                    <span data-lang-ru="Основатель проекта Цифровое общество" data-lang-en="Founder of Digital Society project">Основатель проекта Цифровое общество</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с ценами -->
+    <section class="section" id="prices">
+        <div class="container">
+            <h2 class="section-title" data-lang-ru="Стоимость проектов" data-lang-en="Project Prices">Стоимость проектов</h2>
+            <p class="price-description" data-lang-ru="Работаю по системе оплаты в 'звёздах' — условных единицах, отражающих сложность проекта. Каждый проект оценивается индивидуально." 
+               data-lang-en="I work with a 'stars' payment system - conditional units that reflect project complexity. Each project is evaluated individually.">
+                Работаю по системе оплаты в "звёздах" — условных единицах, отражающих сложность проекта. Каждый проект оценивается индивидуально.
+            </p>
+
+            <div class="price-section">
+                <div class="price-container">
+                    <!-- Простой проект -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <h3 data-lang-ru="Бот или простой сайт" data-lang-en="Bot or Simple Website">Бот или простой сайт</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="price">50-80 <span data-lang-ru="звёзд" data-lang-en="stars">звёзд</span></div>
+                        </div>
+                        <ul class="price-features">
+                            <li data-lang-ru="Простой Telegram-бот" data-lang-en="Simple Telegram bot">Простой Telegram-бот</li>
+                            <li data-lang-ru="Лендинг или визитка" data-lang-en="Landing page or business card">Лендинг или визитка</li>
+                            <li data-lang-ru="Адаптивный дизайн" data-lang-en="Responsive design">Адаптивный дизайн</li>
+                            <li data-lang-ru="Базовый функционал" data-lang-en="Basic functionality">Базовый функционал</li>
+                            <li data-lang-ru="Базовая настройка" data-lang-en="Basic setup">Базовая настройка</li>
+                            <li data-lang-ru="Срок: 3-7 дней" data-lang-en="Time: 3-7 days">Срок: 3-7 дней</li>
+                        </ul>
+                    </div>
+
+                    <!-- Средний проект -->
+                    <div class="price-card featured">
+                        <div class="price-header">
+                            <h3 data-lang-ru="Бот + сайт" data-lang-en="Bot + Website">Бот + сайт</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="price">80-130 <span data-lang-ru="звёзд" data-lang-en="stars">звёзд</span></div>
+                        </div>
+                        <ul class="price-features">
+                            <li data-lang-ru="Бот с расширенным функционалом" data-lang-en="Bot with extended functionality">Бот с расширенным функционалом</li>
+                            <li data-lang-ru="Сайт с несколькими страницами" data-lang-en="Website with multiple pages">Сайт с несколькими страницами</li>
+                            <li data-lang-ru="Индивидуальный дизайн" data-lang-en="Custom design">Индивидуальный дизайн</li>
+                            <li data-lang-ru="Интеграция с API" data-lang-en="API integration">Интеграция с API</li>
+                            <li data-lang-ru="База данных (простая)" data-lang-en="Database (simple)">База данных (простая)</li>
+                            <li data-lang-ru="Срок: 10-20 дней" data-lang-en="Time: 10-20 days">Срок: 10-20 дней</li>
+                        </ul>
+                    </div>
+
+                    <!-- Сложный проект -->
+                    <div class="price-card">
+                        <div class="price-header">
+                            <h3 data-lang-ru="Сложный проект" data-lang-en="Complex Project">Сложный проект</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <div class="price">130-200 <span data-lang-ru="звёзд" data-lang-en="stars">звёзд</span></div>
+                        </div>
+                        <ul class="price-features">
+                            <li data-lang-ru="Сложный бот с админкой" data-lang-en="Complex bot with admin panel">Сложный бот с админкой</li>
+                            <li data-lang-ru="Веб-приложение с логикой" data-lang-en="Web application with logic">Веб-приложение с логикой</li>
+                            <li data-lang-ru="Интеграция платежных систем" data-lang-en="Payment systems integration">Интеграция платежных систем</li>
+                            <li data-lang-ru="Сложная база данных" data-lang-en="Complex database">Сложная база данных</li>
+                            <li data-lang-ru="API для внешних сервисов" data-lang-en="API for external services">API для внешних сервисов</li>
+                            <li data-lang-ru="Срок: 20-40 дней" data-lang-en="Time: 20-40 days">Срок: 20-40 дней</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 40px; font-style: italic; color: var(--text-secondary);" 
+                   data-lang-ru="* 1 звезда = условная единица сложности. Для точного расчета стоимости вашего проекта свяжитесь со мной."
+                   data-lang-en="* 1 star = conditional complexity unit. For accurate cost estimation of your project, contact me.">
+                    * 1 звезда = условная единица сложности. Для точного расчета стоимости вашего проекта свяжитесь со мной.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Telegram -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-lang-ru="Telegram" data-lang-en="Telegram">Telegram</h2>
+            
+            <div class="telegram-connect">
+                <div class="telegram-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                
+                <h3 data-lang-ru="Основной способ связи" data-lang-en="Main communication method">Основной способ связи</h3>
+                
+                <div class="telegram-username">@watevow</div>
+                
+                <p class="telegram-desc" data-lang-ru="Пишите в Telegram для обсуждения проектов, консультаций или сотрудничества. Отвечаю быстро." 
+                   data-lang-en="Write in Telegram to discuss projects, consultations or cooperation. I respond quickly.">
+                    Пишите в Telegram для обсуждения проектов, консультаций или сотрудничества. Отвечаю быстро.
+                </p>
+                
+                <a href="https://t.me/watevow" target="_blank" class="telegram-link">
+                    <i class="fab fa-telegram"></i>
+                    <span data-lang-ru="Написать в Telegram" data-lang-en="Write in Telegram">Написать в Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-content">
+            <div class="creator-info">
+                <div class="logo" style="font-size: 20px;">
+                    <div style="color: var(--primary);">&#60;/&#62;</div>
+                    <div style="color: white; font-weight: 800; margin-left: 8px;">web adapter</div>
+                </div>
+                
+                <div class="creator-badge-footer">
+                    <i class="fas fa-crown"></i>
+                    <span data-lang-ru="Создатель Цифрового общества" data-lang-en="Creator of Digital Society">Создатель Цифрового общества</span>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <span data-lang-ru="© 2023 web adapter. Разработка ботов и веб-приложений." 
+                      data-lang-en="© 2023 web adapter. Bot and web application development.">
+                    © 2023 web adapter. Разработка ботов и веб-приложений.
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Закрыть мобильное меню при клике на ссылку
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Система перевода
+        let currentLang = 'ru';
+        const langButtons = document.querySelectorAll('.lang-btn');
+
+        // Функция перевода
+        function translatePage(lang) {
+            // Обновляем активную кнопку языка
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Обновляем текст на странице
+            document.querySelectorAll('[data-lang-ru], [data-lang-en]').forEach(element => {
+                const ruText = element.getAttribute('data-lang-ru');
+                const enText = element.getAttribute('data-lang-en');
+                
+                if (lang === 'ru' && ruText) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = ruText;
+                    } else {
+                        element.innerHTML = ruText;
+                    }
+                } else if (lang === 'en' && enText) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = enText;
+                    } else {
+                        element.innerHTML = enText;
+                    }
+                }
+            });
+
+            // Обновляем язык документа
+            document.documentElement.lang = lang;
+            currentLang = lang;
+        }
+
+        // Обработчики для кнопок языка
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                translatePage(lang);
+                
+                // Сохраняем выбор языка в localStorage
+                localStorage.setItem('preferredLang', lang);
+            });
+        });
+
+        // Проверяем сохраненный язык при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang') || 'ru';
+            translatePage(savedLang);
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Эффект свечения карточек при прокрутке
+        const priceCards = document.querySelectorAll('.price-card');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.boxShadow = '0 0 30px rgba(255, 107, 53, 0.5)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        priceCards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
