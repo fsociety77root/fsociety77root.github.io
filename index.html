@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>web adapter | Создатель Цифрового общества</title>
+    <title>web adapter | Создам программу под ваш вкус</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -63,7 +63,7 @@
             100% { opacity: 0.15; }
         }
 
-        /* Шапка с языковым переключателем */
+        /* Шапка */
         header {
             background-color: rgba(10, 10, 10, 0.9);
             padding: 20px 0;
@@ -209,11 +209,48 @@
             z-index: 1;
         }
 
+        .main-title {
+            font-size: 52px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .tagline-highlight {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 167, 38, 0.7);
+            position: relative;
+            display: inline-block;
+        }
+
+        .tagline-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            box-shadow: var(--glow);
+        }
+
         .key-visual {
             background-color: rgba(26, 26, 26, 0.7);
             border-radius: 20px;
             padding: 40px;
-            margin-bottom: 40px;
+            margin: 40px 0;
             border: 1px solid var(--border);
             box-shadow: var(--glow);
             transition: all 0.5s ease;
@@ -227,128 +264,151 @@
             box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
         }
 
-        .main-title {
-            font-size: 52px;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -0.5px;
-        }
-
-        .tagline {
-            font-size: 24px;
-            color: var(--primary);
-            margin-bottom: 25px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .highlight-box {
-            display: inline-block;
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid var(--primary);
-            padding: 15px 25px;
-            margin: 15px 0;
-            border-radius: 10px;
-            max-width: 600px;
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: 600;
-            text-shadow: 0 0 8px var(--primary-glow);
-        }
-
         .creator-badge {
             display: inline-flex;
             align-items: center;
             background: var(--gradient);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
-            margin-top: 20px;
+            margin: 20px 0 30px;
             font-weight: 600;
             box-shadow: var(--glow);
+            font-size: 18px;
         }
 
         .creator-badge i {
             margin-right: 10px;
         }
 
-        /* Секция контактов */
-        .contact-section {
-            text-align: center;
-            padding: 80px 0;
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
         }
 
-        .telegram-connect {
-            display: inline-flex;
+        .tech-item {
+            display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            background-color: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px;
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 15px;
             border: 1px solid var(--border);
-            box-shadow: var(--glow);
+            width: 120px;
             transition: all 0.3s;
-            max-width: 500px;
-            margin: 0 auto;
         }
 
-        .telegram-connect:hover {
+        .tech-item:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
-        }
-
-        .telegram-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            color: white;
             box-shadow: var(--glow);
         }
 
-        .telegram-username {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 10px 0;
+        .tech-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
         }
 
-        .telegram-desc {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
+        .tech-python {
+            color: #3776AB;
         }
 
-        .telegram-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gradient);
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 50px;
+        .tech-js {
+            color: #F7DF1E;
+        }
+
+        .tech-html {
+            color: #E34F26;
+        }
+
+        .tech-name {
             font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s;
-            box-shadow: var(--glow);
+            font-size: 16px;
         }
 
-        .telegram-link:hover {
+        /* Секция предложения */
+        .offer-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .offer-card {
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 0 auto;
+            border: 2px solid var(--primary);
+            box-shadow: var(--glow);
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .offer-title {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .offer-desc {
+            font-size: 20px;
+            color: var(--text);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .offer-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
             transform: translateY(-5px);
-            box-shadow: 0 15px 25px var(--primary-glow);
+        }
+
+        .feature-icon {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 16px;
         }
 
         /* Секция с ценами */
@@ -491,6 +551,79 @@
             font-weight: bold;
         }
 
+        /* Секция Telegram */
+        .contact-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .telegram-connect {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
+            transition: all 0.3s;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .telegram-connect:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .telegram-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .telegram-username {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .telegram-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: var(--glow);
+        }
+
+        .telegram-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px var(--primary-glow);
+        }
+
         /* Футер */
         footer {
             background-color: rgba(10, 10, 10, 0.95);
@@ -544,6 +677,10 @@
             .main-title {
                 font-size: 42px;
             }
+
+            .tagline {
+                font-size: 24px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -587,7 +724,7 @@
                 padding: 30px 20px;
             }
 
-            .key-visual {
+            .key-visual, .offer-card {
                 padding: 30px 20px;
             }
 
@@ -607,6 +744,10 @@
                 padding: 6px 12px;
                 font-size: 14px;
             }
+
+            .offer-features {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -615,7 +756,7 @@
             }
 
             .tagline {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .section-title {
@@ -624,6 +765,15 @@
 
             .telegram-connect {
                 padding: 30px 20px;
+            }
+
+            .tech-item {
+                width: 100px;
+                padding: 15px;
+            }
+
+            .offer-title {
+                font-size: 28px;
             }
         }
     </style>
@@ -652,6 +802,7 @@
                 <nav id="navMenu">
                     <ul>
                         <li><a href="#home" data-lang-ru="Главная" data-lang-en="Home">Главная</a></li>
+                        <li><a href="#offer" data-lang-ru="Услуги" data-lang-en="Services">Услуги</a></li>
                         <li><a href="#prices" data-lang-ru="Прайс" data-lang-en="Prices">Прайс</a></li>
                         <li><a href="#contact" data-lang-ru="Telegram" data-lang-en="Telegram">Telegram</a></li>
                     </ul>
@@ -663,21 +814,109 @@
     <!-- Главная секция -->
     <section class="hero" id="home">
         <div class="container hero-content">
+            <h1 class="main-title">web adapter</h1>
+            <p class="tagline">
+                <span class="tagline-highlight" data-lang-ru="СОЗДАМ ПРОГУ ПОД ВАШ ВКУС" data-lang-en="I'LL CREATE AN APP TO YOUR TASTE">СОЗДАМ ПРОГУ ПОД ВАШ ВКУС</span>
+            </p>
+            
+            <div class="creator-badge">
+                <i class="fas fa-crown"></i>
+                <span data-lang-ru="Основатель Цифрового общества" data-lang-en="Founder of Digital Society">Основатель Цифрового общества</span>
+            </div>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon tech-python">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-name">Python</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon tech-js">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon tech-html">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="tech-name">HTML/CSS</div>
+                </div>
+            </div>
+            
             <div class="key-visual">
-                <h1 class="main-title">web adapter</h1>
-                <p class="tagline" data-lang-ru="Создатель Цифрового общества" data-lang-en="Creator of Digital Society">Создатель Цифрового общества</p>
+                <p style="font-size: 20px; color: var(--text-secondary);" 
+                   data-lang-ru="<span style='color: var(--primary); font-weight: 600;'>2 года</span> в программировании. Создаю <span style='color: var(--primary); font-weight: 600;'>Telegram-ботов</span>, <span style='color: var(--primary); font-weight: 600;'>веб-приложения</span> и <span style='color: var(--primary); font-weight: 600;'>автоматизацию</span> под ваши нужды."
+                   data-lang-en="<span style='color: var(--primary); font-weight: 600;'>2 years</span> in programming. Creating <span style='color: var(--primary); font-weight: 600;'>Telegram bots</span>, <span style='color: var(--primary); font-weight: 600;'>web applications</span> and <span style='color: var(--primary); font-weight: 600;'>automation</span> for your needs.">
+                    <span style="color: var(--primary); font-weight: 600;">2 года</span> в программировании. Создаю <span style="color: var(--primary); font-weight: 600;">Telegram-ботов</span>, <span style="color: var(--primary); font-weight: 600;">веб-приложения</span> и <span style="color: var(--primary); font-weight: 600;">автоматизацию</span> под ваши нужды.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция предложения -->
+    <section class="offer-section" id="offer">
+        <div class="container">
+            <div class="offer-card">
+                <h2 class="offer-title" data-lang-ru="Что я создаю для вас" data-lang-en="What I create for you">Что я создаю для вас</h2>
                 
-                <div class="highlight-box">
-                    <p data-lang-ru="<span class='highlight'>2 года</span> в программировании. Создаю <span class='highlight'>Telegram-ботов</span> и веб-приложения на <span class='highlight'>HTML, Python, JavaScript</span>." 
-                       data-lang-en="<span class='highlight'>2 years</span> in programming. Creating <span class='highlight'>Telegram bots</span> and web applications with <span class='highlight'>HTML, Python, JavaScript</span>.">
-                        <span class="highlight">2 года</span> в программировании. Создаю <span class="highlight">Telegram-ботов</span> и веб-приложения на <span class="highlight">HTML, Python, JavaScript</span>.
-                    </p>
+                <p class="offer-desc" data-lang-ru="Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. От идеи до готового продукта — с учётом всех ваших пожеланий и требований." 
+                   data-lang-en="I develop custom programs and applications in Python, JavaScript and other technologies. From idea to finished product - taking into account all your wishes and requirements.">
+                    Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. От идеи до готового продукта — с учётом всех ваших пожеланий и требований.
+                </p>
+                
+                <div class="offer-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="feature-title" data-lang-ru="Программы на Python" data-lang-en="Python Programs">Программы на Python</h3>
+                        <p class="feature-desc" data-lang-ru="Автоматизация, боты, парсеры, утилиты, desktop-приложения" 
+                           data-lang-en="Automation, bots, parsers, utilities, desktop applications">
+                            Автоматизация, боты, парсеры, утилиты, desktop-приложения
+                        </p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <h3 class="feature-title" data-lang-ru="JavaScript приложения" data-lang-en="JavaScript Applications">JavaScript приложения</h3>
+                        <p class="feature-desc" data-lang-ru="Веб-приложения, интерактивные сайты, браузерные расширения" 
+                           data-lang-en="Web applications, interactive websites, browser extensions">
+                            Веб-приложения, интерактивные сайты, браузерные расширения
+                        </p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3 class="feature-title" data-lang-ru="Telegram боты" data-lang-en="Telegram Bots">Telegram боты</h3>
+                        <p class="feature-desc" data-lang-ru="От простых автоответчиков до сложных ботов с оплатой и БД" 
+                           data-lang-en="From simple autoresponders to complex bots with payments and DB">
+                            От простых автоответчиков до сложных ботов с оплатой и БД
+                        </p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="feature-title" data-lang-ru="Индивидуальные решения" data-lang-en="Custom Solutions">Индивидуальные решения</h3>
+                        <p class="feature-desc" data-lang-ru="Программы под ваши конкретные задачи и бизнес-процессы" 
+                           data-lang-en="Programs for your specific tasks and business processes">
+                            Программы под ваши конкретные задачи и бизнес-процессы
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="creator-badge">
-                    <i class="fas fa-crown"></i>
-                    <span data-lang-ru="Основатель проекта Цифровое общество" data-lang-en="Founder of Digital Society project">Основатель проекта Цифровое общество</span>
-                </div>
+                <p style="font-size: 20px; color: var(--primary); font-weight: 600; margin-top: 30px;"
+                   data-lang-ru="Опишите, что вам нужно — реализую вашу идею в работающую программу!"
+                   data-lang-en="Describe what you need - I'll turn your idea into a working program!">
+                    Опишите, что вам нужно — реализую вашу идею в работающую программу!
+                </p>
             </div>
         </div>
     </section>
@@ -685,10 +924,10 @@
     <!-- Секция с ценами -->
     <section class="section" id="prices">
         <div class="container">
-            <h2 class="section-title" data-lang-ru="Стоимость проектов" data-lang-en="Project Prices">Стоимость проектов</h2>
-            <p class="price-description" data-lang-ru="Работаю по системе оплаты в 'звёздах' — условных единицах, отражающих сложность проекта. Каждый проект оценивается индивидуально." 
-               data-lang-en="I work with a 'stars' payment system - conditional units that reflect project complexity. Each project is evaluated individually.">
-                Работаю по системе оплаты в "звёздах" — условных единицах, отражающих сложность проекта. Каждый проект оценивается индивидуально.
+            <h2 class="section-title" data-lang-ru="Стоимость разработки" data-lang-en="Development Cost">Стоимость разработки</h2>
+            <p class="price-description" data-lang-ru="Работаю по системе оплаты в 'звёздах' — условных единицах, отражающих сложность проекта. Чем сложнее программа, тем больше звёзд." 
+               data-lang-en="I work with a 'stars' payment system - conditional units that reflect project complexity. The more complex the program, the more stars.">
+                Работаю по системе оплаты в "звёздах" — условных единицах, отражающих сложность проекта. Чем сложнее программа, тем больше звёзд.
             </p>
 
             <div class="price-section">
@@ -696,7 +935,7 @@
                     <!-- Простой проект -->
                     <div class="price-card">
                         <div class="price-header">
-                            <h3 data-lang-ru="Бот или простой сайт" data-lang-en="Bot or Simple Website">Бот или простой сайт</h3>
+                            <h3 data-lang-ru="Простая программа" data-lang-en="Simple Program">Простая программа</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
@@ -704,10 +943,10 @@
                         </div>
                         <ul class="price-features">
                             <li data-lang-ru="Простой Telegram-бот" data-lang-en="Simple Telegram bot">Простой Telegram-бот</li>
-                            <li data-lang-ru="Лендинг или визитка" data-lang-en="Landing page or business card">Лендинг или визитка</li>
-                            <li data-lang-ru="Адаптивный дизайн" data-lang-en="Responsive design">Адаптивный дизайн</li>
+                            <li data-lang-ru="Скрипт для автоматизации" data-lang-en="Automation script">Скрипт для автоматизации</li>
+                            <li data-lang-ru="Простые утилиты на Python" data-lang-en="Simple Python utilities">Простые утилиты на Python</li>
                             <li data-lang-ru="Базовый функционал" data-lang-en="Basic functionality">Базовый функционал</li>
-                            <li data-lang-ru="Базовая настройка" data-lang-en="Basic setup">Базовая настройка</li>
+                            <li data-lang-ru="Минимальный дизайн" data-lang-en="Minimal design">Минимальный дизайн</li>
                             <li data-lang-ru="Срок: 3-7 дней" data-lang-en="Time: 3-7 days">Срок: 3-7 дней</li>
                         </ul>
                     </div>
@@ -715,7 +954,7 @@
                     <!-- Средний проект -->
                     <div class="price-card featured">
                         <div class="price-header">
-                            <h3 data-lang-ru="Бот + сайт" data-lang-en="Bot + Website">Бот + сайт</h3>
+                            <h3 data-lang-ru="Индивидуальная прога" data-lang-en="Custom App">Индивидуальная прога</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -724,10 +963,10 @@
                         </div>
                         <ul class="price-features">
                             <li data-lang-ru="Бот с расширенным функционалом" data-lang-en="Bot with extended functionality">Бот с расширенным функционалом</li>
-                            <li data-lang-ru="Сайт с несколькими страницами" data-lang-en="Website with multiple pages">Сайт с несколькими страницами</li>
-                            <li data-lang-ru="Индивидуальный дизайн" data-lang-en="Custom design">Индивидуальный дизайн</li>
+                            <li data-lang-ru="Веб-приложение с логикой" data-lang-en="Web app with logic">Веб-приложение с логикой</li>
                             <li data-lang-ru="Интеграция с API" data-lang-en="API integration">Интеграция с API</li>
                             <li data-lang-ru="База данных (простая)" data-lang-en="Database (simple)">База данных (простая)</li>
+                            <li data-lang-ru="Индивидуальный дизайн" data-lang-en="Custom design">Индивидуальный дизайн</li>
                             <li data-lang-ru="Срок: 10-20 дней" data-lang-en="Time: 10-20 days">Срок: 10-20 дней</li>
                         </ul>
                     </div>
@@ -735,7 +974,7 @@
                     <!-- Сложный проект -->
                     <div class="price-card">
                         <div class="price-header">
-                            <h3 data-lang-ru="Сложный проект" data-lang-en="Complex Project">Сложный проект</h3>
+                            <h3 data-lang-ru="Комплексное решение" data-lang-en="Complex Solution">Комплексное решение</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -744,42 +983,42 @@
                             <div class="price">130-200 <span data-lang-ru="звёзд" data-lang-en="stars">звёзд</span></div>
                         </div>
                         <ul class="price-features">
-                            <li data-lang-ru="Сложный бот с админкой" data-lang-en="Complex bot with admin panel">Сложный бот с админкой</li>
-                            <li data-lang-ru="Веб-приложение с логикой" data-lang-en="Web application with logic">Веб-приложение с логикой</li>
+                            <li data-lang-ru="Сложная система с админкой" data-lang-en="Complex system with admin panel">Сложная система с админкой</li>
+                            <li data-lang-ru="Мультиплатформенное приложение" data-lang-en="Multi-platform application">Мультиплатформенное приложение</li>
                             <li data-lang-ru="Интеграция платежных систем" data-lang-en="Payment systems integration">Интеграция платежных систем</li>
                             <li data-lang-ru="Сложная база данных" data-lang-en="Complex database">Сложная база данных</li>
-                            <li data-lang-ru="API для внешних сервисов" data-lang-en="API for external services">API для внешних сервисов</li>
+                            <li data-lang-ru="Полная техническая поддержка" data-lang-en="Full technical support">Полная техническая поддержка</li>
                             <li data-lang-ru="Срок: 20-40 дней" data-lang-en="Time: 20-40 days">Срок: 20-40 дней</li>
                         </ul>
                     </div>
                 </div>
 
                 <p style="text-align: center; margin-top: 40px; font-style: italic; color: var(--text-secondary);" 
-                   data-lang-ru="* 1 звезда = условная единица сложности. Для точного расчета стоимости вашего проекта свяжитесь со мной."
-                   data-lang-en="* 1 star = conditional complexity unit. For accurate cost estimation of your project, contact me.">
-                    * 1 звезда = условная единица сложности. Для точного расчета стоимости вашего проекта свяжитесь со мной.
+                   data-lang-ru="* Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах и сроки реализации."
+                   data-lang-en="* Describe your idea in Telegram - I'll calculate the exact cost in stars and implementation time.">
+                    * Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах и сроки реализации.
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Секция Telegram -->
-    <section class="section contact-section" id="contact">
+    <section class="contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title" data-lang-ru="Telegram" data-lang-en="Telegram">Telegram</h2>
+            <h2 class="section-title" data-lang-ru="Обсудим вашу программу?" data-lang-en="Let's discuss your app?">Обсудим вашу программу?</h2>
             
             <div class="telegram-connect">
                 <div class="telegram-icon">
                     <i class="fab fa-telegram"></i>
                 </div>
                 
-                <h3 data-lang-ru="Основной способ связи" data-lang-en="Main communication method">Основной способ связи</h3>
+                <h3 data-lang-ru="Напишите в Telegram" data-lang-en="Write in Telegram">Напишите в Telegram</h3>
                 
                 <div class="telegram-username">@watevow</div>
                 
-                <p class="telegram-desc" data-lang-ru="Пишите в Telegram для обсуждения проектов, консультаций или сотрудничества. Отвечаю быстро." 
-                   data-lang-en="Write in Telegram to discuss projects, consultations or cooperation. I respond quickly.">
-                    Пишите в Telegram для обсуждения проектов, консультаций или сотрудничества. Отвечаю быстро.
+                <p class="telegram-desc" data-lang-ru="Опишите, какую программу хотите — отвечу быстро, рассчитаю стоимость и сроки. Создам прогу под ваш вкус на Python, JS или другом стеке." 
+                   data-lang-en="Describe what kind of app you want - I'll reply quickly, calculate the cost and time. I'll create an app to your taste in Python, JS or other stack.">
+                    Опишите, какую программу хотите — отвечу быстро, рассчитаю стоимость и сроки. Создам прогу под ваш вкус на Python, JS или другом стеке.
                 </p>
                 
                 <a href="https://t.me/watevow" target="_blank" class="telegram-link">
@@ -801,14 +1040,14 @@
                 
                 <div class="creator-badge-footer">
                     <i class="fas fa-crown"></i>
-                    <span data-lang-ru="Создатель Цифрового общества" data-lang-en="Creator of Digital Society">Создатель Цифрового общества</span>
+                    <span data-lang-ru="Основатель Цифрового общества" data-lang-en="Founder of Digital Society">Основатель Цифрового общества</span>
                 </div>
             </div>
 
             <div class="copyright">
-                <span data-lang-ru="© 2023 web adapter. Разработка ботов и веб-приложений." 
-                      data-lang-en="© 2023 web adapter. Bot and web application development.">
-                    © 2023 web adapter. Разработка ботов и веб-приложений.
+                <span data-lang-ru="© 2023 web adapter. Создаю программы на Python и JavaScript под ваш вкус." 
+                      data-lang-en="© 2023 web adapter. I create Python and JavaScript programs to your taste.">
+                    © 2023 web adapter. Создаю программы на Python и JavaScript под ваш вкус.
                 </span>
             </div>
         </div>
