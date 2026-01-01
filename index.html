@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>web adapter | Создам программу под ваш вкус</title>
+    <title>web adapter | Быстрая разработка программ до 2 дней</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -246,22 +246,28 @@
             box-shadow: var(--glow);
         }
 
-        .key-visual {
-            background-color: rgba(26, 26, 26, 0.7);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px 0;
-            border: 1px solid var(--border);
-            box-shadow: var(--glow);
-            transition: all 0.5s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .fast-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin: 20px 0 30px;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(0, 176, 155, 0.5);
+            font-size: 20px;
+            animation: pulseBadge 2s infinite;
         }
 
-        .key-visual:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        @keyframes pulseBadge {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fast-badge i {
+            margin-right: 10px;
         }
 
         .creator-badge {
@@ -271,7 +277,7 @@
             color: white;
             padding: 12px 24px;
             border-radius: 50px;
-            margin: 20px 0 30px;
+            margin: 10px 0 30px;
             font-weight: 600;
             box-shadow: var(--glow);
             font-size: 18px;
@@ -327,6 +333,42 @@
         .tech-name {
             font-weight: 600;
             font-size: 16px;
+        }
+
+        .key-visual {
+            background-color: rgba(26, 26, 26, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+            box-shadow: var(--glow);
+            transition: all 0.5s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-visual:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .deadline-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .deadline-info i {
+            color: var(--primary);
+            font-size: 24px;
         }
 
         /* Секция предложения */
@@ -385,6 +427,7 @@
             border: 1px solid var(--border);
             transition: all 0.3s;
             text-align: left;
+            position: relative;
         }
 
         .feature-item:hover {
@@ -409,6 +452,18 @@
         .feature-desc {
             color: var(--text-secondary);
             font-size: 16px;
+        }
+
+        .feature-time {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         /* Секция с ценами */
@@ -498,6 +553,18 @@
 
         .price-card.featured:hover {
             transform: scale(1.05) translateY(-10px);
+        }
+
+        .price-time {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .price-header h3 {
@@ -660,6 +727,18 @@
             font-size: 14px;
         }
 
+        .fast-footer {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
         .copyright {
             margin-top: 20px;
             width: 100%;
@@ -819,6 +898,11 @@
                 <span class="tagline-highlight" data-lang-ru="СОЗДАМ ПРОГУ ПОД ВАШ ВКУС" data-lang-en="I'LL CREATE AN APP TO YOUR TASTE">СОЗДАМ ПРОГУ ПОД ВАШ ВКУС</span>
             </p>
             
+            <div class="fast-badge">
+                <i class="fas fa-bolt"></i>
+                <span data-lang-ru="ВСЕ ПРОЕКТЫ ДО 2 ДНЕЙ" data-lang-en="ALL PROJECTS UP TO 2 DAYS">ВСЕ ПРОЕКТЫ ДО 2 ДНЕЙ</span>
+            </div>
+            
             <div class="creator-badge">
                 <i class="fas fa-crown"></i>
                 <span data-lang-ru="Основатель Цифрового общества" data-lang-en="Founder of Digital Society">Основатель Цифрового общества</span>
@@ -851,6 +935,14 @@
                    data-lang-en="<span style='color: var(--primary); font-weight: 600;'>2 years</span> in programming. Creating <span style='color: var(--primary); font-weight: 600;'>Telegram bots</span>, <span style='color: var(--primary); font-weight: 600;'>web applications</span> and <span style='color: var(--primary); font-weight: 600;'>automation</span> for your needs.">
                     <span style="color: var(--primary); font-weight: 600;">2 года</span> в программировании. Создаю <span style="color: var(--primary); font-weight: 600;">Telegram-ботов</span>, <span style="color: var(--primary); font-weight: 600;">веб-приложения</span> и <span style="color: var(--primary); font-weight: 600;">автоматизацию</span> под ваши нужды.
                 </p>
+                
+                <div class="deadline-info">
+                    <i class="fas fa-clock"></i>
+                    <span data-lang-ru="Гарантированный срок выполнения любого проекта — до 2 дней" 
+                          data-lang-en="Guaranteed completion time for any project — up to 2 days">
+                        Гарантированный срок выполнения любого проекта — до 2 дней
+                    </span>
+                </div>
             </div>
         </div>
     </section>
@@ -861,61 +953,65 @@
             <div class="offer-card">
                 <h2 class="offer-title" data-lang-ru="Что я создаю для вас" data-lang-en="What I create for you">Что я создаю для вас</h2>
                 
-                <p class="offer-desc" data-lang-ru="Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. От идеи до готового продукта — с учётом всех ваших пожеланий и требований." 
-                   data-lang-en="I develop custom programs and applications in Python, JavaScript and other technologies. From idea to finished product - taking into account all your wishes and requirements.">
-                    Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. От идеи до готового продукта — с учётом всех ваших пожеланий и требований.
+                <p class="offer-desc" data-lang-ru="Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. Быстро — от идеи до готового продукта за 1-2 дня, с учётом всех ваших пожеланий." 
+                   data-lang-en="I develop custom programs and applications in Python, JavaScript and other technologies. Quickly — from idea to finished product in 1-2 days, taking into account all your wishes.">
+                    Разрабатываю индивидуальные программы и приложения на Python, JavaScript и других технологиях. Быстро — от идеи до готового продукта за 1-2 дня, с учётом всех ваших пожеланий.
                 </p>
                 
                 <div class="offer-features">
                     <div class="feature-item">
+                        <div class="feature-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="feature-icon">
                             <i class="fab fa-python"></i>
                         </div>
                         <h3 class="feature-title" data-lang-ru="Программы на Python" data-lang-en="Python Programs">Программы на Python</h3>
-                        <p class="feature-desc" data-lang-ru="Автоматизация, боты, парсеры, утилиты, desktop-приложения" 
-                           data-lang-en="Automation, bots, parsers, utilities, desktop applications">
-                            Автоматизация, боты, парсеры, утилиты, desktop-приложения
+                        <p class="feature-desc" data-lang-ru="Автоматизация, боты, парсеры, утилиты, desktop-приложения. Быстрая разработка под ваши задачи." 
+                           data-lang-en="Automation, bots, parsers, utilities, desktop applications. Fast development for your tasks.">
+                            Автоматизация, боты, парсеры, утилиты, desktop-приложения. Быстрая разработка под ваши задачи.
                         </p>
                     </div>
                     
                     <div class="feature-item">
+                        <div class="feature-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="feature-icon">
                             <i class="fab fa-js"></i>
                         </div>
                         <h3 class="feature-title" data-lang-ru="JavaScript приложения" data-lang-en="JavaScript Applications">JavaScript приложения</h3>
-                        <p class="feature-desc" data-lang-ru="Веб-приложения, интерактивные сайты, браузерные расширения" 
-                           data-lang-en="Web applications, interactive websites, browser extensions">
-                            Веб-приложения, интерактивные сайты, браузерные расширения
+                        <p class="feature-desc" data-lang-ru="Веб-приложения, интерактивные сайты, браузерные расширения. Оперативная реализация." 
+                           data-lang-en="Web applications, interactive websites, browser extensions. Quick implementation.">
+                            Веб-приложения, интерактивные сайты, браузерные расширения. Оперативная реализация.
                         </p>
                     </div>
                     
                     <div class="feature-item">
+                        <div class="feature-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="feature-icon">
                             <i class="fab fa-telegram"></i>
                         </div>
                         <h3 class="feature-title" data-lang-ru="Telegram боты" data-lang-en="Telegram Bots">Telegram боты</h3>
-                        <p class="feature-desc" data-lang-ru="От простых автоответчиков до сложных ботов с оплатой и БД" 
-                           data-lang-en="From simple autoresponders to complex bots with payments and DB">
-                            От простых автоответчиков до сложных ботов с оплатой и БД
+                        <p class="feature-desc" data-lang-ru="От простых автоответчиков до сложных ботов с оплатой и БД. Запуск за 1-2 дня." 
+                           data-lang-en="From simple autoresponders to complex bots with payments and DB. Launch in 1-2 days.">
+                            От простых автоответчиков до сложных ботов с оплатой и БД. Запуск за 1-2 дня.
                         </p>
                     </div>
                     
                     <div class="feature-item">
+                        <div class="feature-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="feature-icon">
                             <i class="fas fa-code"></i>
                         </div>
                         <h3 class="feature-title" data-lang-ru="Индивидуальные решения" data-lang-en="Custom Solutions">Индивидуальные решения</h3>
-                        <p class="feature-desc" data-lang-ru="Программы под ваши конкретные задачи и бизнес-процессы" 
-                           data-lang-en="Programs for your specific tasks and business processes">
-                            Программы под ваши конкретные задачи и бизнес-процессы
+                        <p class="feature-desc" data-lang-ru="Программы под ваши конкретные задачи и бизнес-процессы. Быстрая адаптация под потребности." 
+                           data-lang-en="Programs for your specific tasks and business processes. Quick adaptation to needs.">
+                            Программы под ваши конкретные задачи и бизнес-процессы. Быстрая адаптация под потребности.
                         </p>
                     </div>
                 </div>
                 
                 <p style="font-size: 20px; color: var(--primary); font-weight: 600; margin-top: 30px;"
-                   data-lang-ru="Опишите, что вам нужно — реализую вашу идею в работающую программу!"
-                   data-lang-en="Describe what you need - I'll turn your idea into a working program!">
-                    Опишите, что вам нужно — реализую вашу идею в работающую программу!
+                   data-lang-ru="Опишите, что вам нужно — реализую вашу идею в работающую программу за 1-2 дня!"
+                   data-lang-en="Describe what you need - I'll turn your idea into a working program in 1-2 days!">
+                    Опишите, что вам нужно — реализую вашу идею в работающую программу за 1-2 дня!
                 </p>
             </div>
         </div>
@@ -924,16 +1020,17 @@
     <!-- Секция с ценами -->
     <section class="section" id="prices">
         <div class="container">
-            <h2 class="section-title" data-lang-ru="Стоимость разработки" data-lang-en="Development Cost">Стоимость разработки</h2>
-            <p class="price-description" data-lang-ru="Работаю по системе оплаты в 'звёздах' — условных единицах, отражающих сложность проекта. Чем сложнее программа, тем больше звёзд." 
-               data-lang-en="I work with a 'stars' payment system - conditional units that reflect project complexity. The more complex the program, the more stars.">
-                Работаю по системе оплаты в "звёздах" — условных единицах, отражающих сложность проекта. Чем сложнее программа, тем больше звёзд.
+            <h2 class="section-title" data-lang-ru="Стоимость и сроки" data-lang-en="Cost and Terms">Стоимость и сроки</h2>
+            <p class="price-description" data-lang-ru="Работаю по системе оплаты в 'звёздах'. Все проекты выполняются в срок до 2 дней — независимо от сложности." 
+               data-lang-en="I work with a 'stars' payment system. All projects are completed within 2 days — regardless of complexity.">
+                Работаю по системе оплаты в "звёздах". Все проекты выполняются в срок до 2 дней — независимо от сложности.
             </p>
 
             <div class="price-section">
                 <div class="price-container">
                     <!-- Простой проект -->
                     <div class="price-card">
+                        <div class="price-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="price-header">
                             <h3 data-lang-ru="Простая программа" data-lang-en="Simple Program">Простая программа</h3>
                             <div class="stars">
@@ -947,12 +1044,13 @@
                             <li data-lang-ru="Простые утилиты на Python" data-lang-en="Simple Python utilities">Простые утилиты на Python</li>
                             <li data-lang-ru="Базовый функционал" data-lang-en="Basic functionality">Базовый функционал</li>
                             <li data-lang-ru="Минимальный дизайн" data-lang-en="Minimal design">Минимальный дизайн</li>
-                            <li data-lang-ru="Срок: 3-7 дней" data-lang-en="Time: 3-7 days">Срок: 3-7 дней</li>
+                            <li data-lang-ru="Срок: до 2 дней" data-lang-en="Time: up to 2 days">Срок: до 2 дней</li>
                         </ul>
                     </div>
 
                     <!-- Средний проект -->
                     <div class="price-card featured">
+                        <div class="price-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="price-header">
                             <h3 data-lang-ru="Индивидуальная прога" data-lang-en="Custom App">Индивидуальная прога</h3>
                             <div class="stars">
@@ -967,12 +1065,13 @@
                             <li data-lang-ru="Интеграция с API" data-lang-en="API integration">Интеграция с API</li>
                             <li data-lang-ru="База данных (простая)" data-lang-en="Database (simple)">База данных (простая)</li>
                             <li data-lang-ru="Индивидуальный дизайн" data-lang-en="Custom design">Индивидуальный дизайн</li>
-                            <li data-lang-ru="Срок: 10-20 дней" data-lang-en="Time: 10-20 days">Срок: 10-20 дней</li>
+                            <li data-lang-ru="Срок: до 2 дней" data-lang-en="Time: up to 2 days">Срок: до 2 дней</li>
                         </ul>
                     </div>
 
                     <!-- Сложный проект -->
                     <div class="price-card">
+                        <div class="price-time" data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</div>
                         <div class="price-header">
                             <h3 data-lang-ru="Комплексное решение" data-lang-en="Complex Solution">Комплексное решение</h3>
                             <div class="stars">
@@ -988,15 +1087,15 @@
                             <li data-lang-ru="Интеграция платежных систем" data-lang-en="Payment systems integration">Интеграция платежных систем</li>
                             <li data-lang-ru="Сложная база данных" data-lang-en="Complex database">Сложная база данных</li>
                             <li data-lang-ru="Полная техническая поддержка" data-lang-en="Full technical support">Полная техническая поддержка</li>
-                            <li data-lang-ru="Срок: 20-40 дней" data-lang-en="Time: 20-40 days">Срок: 20-40 дней</li>
+                            <li data-lang-ru="Срок: до 2 дней" data-lang-en="Time: up to 2 days">Срок: до 2 дней</li>
                         </ul>
                     </div>
                 </div>
 
                 <p style="text-align: center; margin-top: 40px; font-style: italic; color: var(--text-secondary);" 
-                   data-lang-ru="* Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах и сроки реализации."
-                   data-lang-en="* Describe your idea in Telegram - I'll calculate the exact cost in stars and implementation time.">
-                    * Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах и сроки реализации.
+                   data-lang-ru="* Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах. Все проекты гарантированно сдаю за 1-2 дня."
+                   data-lang-en="* Describe your idea in Telegram - I'll calculate the exact cost in stars. All projects are guaranteed to be completed in 1-2 days.">
+                    * Опишите вашу идею в Telegram — рассчитаю точную стоимость в звёздах. Все проекты гарантированно сдаю за 1-2 дня.
                 </p>
             </div>
         </div>
@@ -1016,9 +1115,9 @@
                 
                 <div class="telegram-username">@watevow</div>
                 
-                <p class="telegram-desc" data-lang-ru="Опишите, какую программу хотите — отвечу быстро, рассчитаю стоимость и сроки. Создам прогу под ваш вкус на Python, JS или другом стеке." 
-                   data-lang-en="Describe what kind of app you want - I'll reply quickly, calculate the cost and time. I'll create an app to your taste in Python, JS or other stack.">
-                    Опишите, какую программу хотите — отвечу быстро, рассчитаю стоимость и сроки. Создам прогу под ваш вкус на Python, JS или другом стеке.
+                <p class="telegram-desc" data-lang-ru="Опишите, какую программу хотите — отвечу в течение часа, рассчитаю стоимость. Создам прогу под ваш вкус за 1-2 дня на Python, JS или другом стеке." 
+                   data-lang-en="Describe what kind of app you want - I'll reply within an hour, calculate the cost. I'll create an app to your taste in 1-2 days in Python, JS or other stack.">
+                    Опишите, какую программу хотите — отвечу в течение часа, рассчитаю стоимость. Создам прогу под ваш вкус за 1-2 дня на Python, JS или другом стеке.
                 </p>
                 
                 <a href="https://t.me/watevow" target="_blank" class="telegram-link">
@@ -1042,12 +1141,17 @@
                     <i class="fas fa-crown"></i>
                     <span data-lang-ru="Основатель Цифрового общества" data-lang-en="Founder of Digital Society">Основатель Цифрового общества</span>
                 </div>
+                
+                <div class="fast-footer">
+                    <i class="fas fa-bolt"></i>
+                    <span data-lang-ru="до 2 дней" data-lang-en="up to 2 days">до 2 дней</span>
+                </div>
             </div>
 
             <div class="copyright">
-                <span data-lang-ru="© 2023 web adapter. Создаю программы на Python и JavaScript под ваш вкус." 
-                      data-lang-en="© 2023 web adapter. I create Python and JavaScript programs to your taste.">
-                    © 2023 web adapter. Создаю программы на Python и JavaScript под ваш вкус.
+                <span data-lang-ru="© 2023 web adapter. Быстрая разработка программ на Python и JavaScript за 1-2 дня." 
+                      data-lang-en="© 2023 web adapter. Fast development of Python and JavaScript programs in 1-2 days.">
+                    © 2023 web adapter. Быстрая разработка программ на Python и JavaScript за 1-2 дня.
                 </span>
             </div>
         </div>
